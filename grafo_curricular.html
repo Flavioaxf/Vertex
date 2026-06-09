@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 620px;
+                 background-color: #FFFFFF;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0213", "label": "NCC0213", "shape": "box", "size": 10, "title": "NCC0213\nF\u00edsica para Computa\u00e7\u00e3o\nCH: 60h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "NCC0229", "label": "NCC0229", "shape": "box", "size": 10, "title": "NCC0229\nTransmiss\u00e3o de Dados\nCH: 60h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0109", "label": "NCC0109", "shape": "box", "size": 10, "title": "NCC0109\nMatem\u00e1tica Fundamental\nCH: 90h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0116", "label": "NCC0116", "shape": "box", "size": 10, "title": "NCC0116\nC\u00e1lculo\nCH: 90h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0211", "label": "NCC0211", "shape": "box", "size": 10, "title": "NCC0211\nAlgoritmos e Programa\u00e7\u00e3o\nCH: 90h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0218", "label": "NCC0218", "shape": "box", "size": 10, "title": "NCC0218\nT\u00e9cnicas de Programa\u00e7\u00e3o\nCH: 60h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0216", "label": "NCC0216", "shape": "box", "size": 10, "title": "NCC0216\nCircuitos Digitais\nCH: 90h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0220", "label": "NCC0220", "shape": "box", "size": 10, "title": "NCC0220\nArquitetura de Computadores\nCH: 60h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0217", "label": "NCC0217", "shape": "box", "size": 10, "title": "NCC0217\nGeometria Anal\u00edtica\nCH: 60h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0219", "label": "NCC0219", "shape": "box", "size": 10, "title": "NCC0219\n\u00c1lgebra Linear\nCH: 60h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0222", "label": "NCC0222", "shape": "box", "size": 10, "title": "NCC0222\nEstrutura de Dados\nCH: 90h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0223", "label": "NCC0223", "shape": "box", "size": 10, "title": "NCC0223\nParadigmas de Programa\u00e7\u00e3o\nCH: 30h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "NCC0228", "label": "NCC0228", "shape": "box", "size": 10, "title": "NCC0228\nSistemas Operacionais\nCH: 60h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0221", "label": "NCC0221", "shape": "box", "size": 10, "title": "NCC0221\nEngenharia de Software\nCH: 60h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0225", "label": "NCC0225", "shape": "box", "size": 10, "title": "NCC0225\nAn\u00e1lise de Projeto de Sistemas\nCH: 60h"}, {"color": {"background": "#F59E0B", "border": "#D97706", "highlight": {"background": "#F59E0B", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0233", "label": "NCC0233", "shape": "box", "size": 10, "title": "NCC0233\nTeoria dos Grafos\nCH: 60h"}, {"color": {"background": "#F59E0B", "border": "#D97706", "highlight": {"background": "#F59E0B", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0232", "label": "NCC0232", "shape": "box", "size": 10, "title": "NCC0232\nTeoria da Computa\u00e7\u00e3o\nCH: 60h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "NCC0235", "label": "NCC0235", "shape": "box", "size": 10, "title": "NCC0235\nComputa\u00e7\u00e3o Gr\u00e1fica\nCH: 60h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "NCC0234", "label": "NCC0234", "shape": "box", "size": 10, "title": "NCC0234\nComplexidade de Algoritmos\nCH: 60h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "NCC0239", "label": "NCC0239", "shape": "box", "size": 10, "title": "NCC0239\nProcessamento de Imagem e Vis\u00e3o Computacional\nCH: 60h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "NCC0240", "label": "NCC0240", "shape": "box", "size": 10, "title": "NCC0240\nPrograma\u00e7\u00e3o Paralela\nCH: 30h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "NCC0129", "label": "NCC0129", "shape": "box", "size": 10, "title": "NCC0129\nProjeto de TCC\nCH: 60h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "NCC0231", "label": "NCC0231", "shape": "box", "size": 10, "title": "NCC0231\nRedes de Computadores\nCH: 60h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "NCC0227", "label": "NCC0227", "shape": "box", "size": 10, "title": "NCC0227\nPrograma\u00e7\u00e3o Orientada a Objetos\nCH: 60h"}, {"color": {"background": "#F59E0B", "border": "#D97706", "highlight": {"background": "#F59E0B", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0230", "label": "NCC0230", "shape": "box", "size": 10, "title": "NCC0230\nIntelig\u00eancia Artificial\nCH: 90h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0015", "label": "NCC0015", "shape": "box", "size": 10, "title": "NCC0015\nC\u00e1lculo Num\u00e9rico Computacional\nCH: 60h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "NCC0237", "label": "NCC0237", "shape": "box", "size": 10, "title": "NCC0237\nSistemas Distribu\u00eddos\nCH: 60h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "NCC0238", "label": "NCC0238", "shape": "box", "size": 10, "title": "NCC0238\nCompiladores\nCH: 60h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "NCC0236", "label": "NCC0236", "shape": "box", "size": 10, "title": "NCC0236\nProdu\u00e7\u00e3o Cient\u00edfica\nCH: 30h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "CAN0075", "label": "CAN0075", "shape": "box", "size": 10, "title": "CAN0075\nTrabalho de Conclus\u00e3o de Curso\nCH: 120h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0215", "label": "NCC0215", "shape": "box", "size": 10, "title": "NCC0215\nTecnologia, \u00c9tica e Sociedade\nCH: 60h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0212", "label": "NCC0212", "shape": "box", "size": 10, "title": "NCC0212\nFilosofia da Ci\u00eancia\nCH: 30h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0214", "label": "NCC0214", "shape": "box", "size": 10, "title": "NCC0214\nL\u00f3gica Matem\u00e1tica Aplicada \u00e0 Computa\u00e7\u00e3o\nCH: 60h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0108", "label": "NCC0108", "shape": "box", "size": 10, "title": "NCC0108\nProdu\u00e7\u00e3o Textual\nCH: 30h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "UCE0002", "label": "UCE0002", "shape": "box", "size": 10, "title": "UCE0002\nUCE\nCH: 30h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0179", "label": "NCC0179", "shape": "box", "size": 10, "title": "NCC0179\nIngl\u00eas T\u00e9cnico\nCH: 60h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0114", "label": "NCC0114", "shape": "box", "size": 10, "title": "NCC0114\nMetodologia para o Trabalho Cient\u00edfico\nCH: 30h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "UCE0023", "label": "UCE0023", "shape": "box", "size": 10, "title": "UCE0023\nUCE\nCH: 60h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "NCC0224", "label": "NCC0224", "shape": "box", "size": 10, "title": "NCC0224\nProbabilidade e Estat\u00edstica\nCH: 60h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "UCE0024", "label": "UCE0024", "shape": "box", "size": 10, "title": "UCE0024\nUCE\nCH: 60h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "NCC0226", "label": "NCC0226", "shape": "box", "size": 10, "title": "NCC0226\nBanco de Dados\nCH: 60h"}, {"color": {"background": "#10B981", "border": "#059669", "highlight": {"background": "#10B981", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#FFFFFF", "face": "Inter", "size": 14}, "id": "UCE0025", "label": "UCE0025", "shape": "box", "size": 10, "title": "UCE0025\nUCE\nCH: 60h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "UCE0026", "label": "UCE0026", "shape": "box", "size": 10, "title": "UCE0026\nUCE\nCH: 60h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "UCE0027", "label": "UCE0027", "shape": "box", "size": 10, "title": "UCE0027\nUCE\nCH: 60h"}, {"color": {"background": "#F3F4F6", "border": "#9CA3AF", "highlight": {"background": "#F3F4F6", "border": "#FF6B35"}}, "font": {"bold": true, "color": "#374151", "face": "Inter", "size": 14}, "id": "NCC0127", "label": "NCC0127", "shape": "box", "size": 10, "title": "NCC0127\nTeoria Geral de Adm. e Empreendedorismo\nCH: 60h"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": "NCC0213", "to": "NCC0229", "width": 1}, {"arrows": "to", "from": "NCC0109", "to": "NCC0116", "width": 1}, {"arrows": "to", "from": "NCC0211", "to": "NCC0218", "width": 1}, {"arrows": "to", "from": "NCC0216", "to": "NCC0220", "width": 1}, {"arrows": "to", "from": "NCC0217", "to": "NCC0219", "width": 1}, {"arrows": "to", "from": "NCC0218", "to": "NCC0222", "width": 1}, {"arrows": "to", "from": "NCC0218", "to": "NCC0223", "width": 1}, {"arrows": "to", "from": "NCC0220", "to": "NCC0228", "width": 1}, {"arrows": "to", "from": "NCC0221", "to": "NCC0225", "width": 1}, {"arrows": "to", "from": "NCC0222", "to": "NCC0233", "width": 1}, {"arrows": "to", "from": "NCC0222", "to": "NCC0232", "width": 1}, {"arrows": "to", "from": "NCC0222", "to": "NCC0235", "width": 1}, {"arrows": "to", "from": "NCC0222", "to": "NCC0234", "width": 1}, {"arrows": "to", "from": "NCC0222", "to": "NCC0239", "width": 1}, {"arrows": "to", "from": "NCC0228", "to": "NCC0240", "width": 1}, {"arrows": "to", "from": "NCC0228", "to": "NCC0129", "width": 1}, {"arrows": "to", "from": "NCC0229", "to": "NCC0231", "width": 1}, {"arrows": "to", "from": "NCC0225", "to": "NCC0129", "width": 1}, {"arrows": "to", "from": "NCC0227", "to": "NCC0230", "width": 1}, {"arrows": "to", "from": "NCC0015", "to": "NCC0230", "width": 1}, {"arrows": "to", "from": "NCC0231", "to": "NCC0237", "width": 1}, {"arrows": "to", "from": "NCC0230", "to": "NCC0129", "width": 1}, {"arrows": "to", "from": "NCC0232", "to": "NCC0238", "width": 1}, {"arrows": "to", "from": "NCC0237", "to": "NCC0129", "width": 1}, {"arrows": "to", "from": "NCC0236", "to": "NCC0129", "width": 1}, {"arrows": "to", "from": "NCC0235", "to": "NCC0129", "width": 1}, {"arrows": "to", "from": "NCC0129", "to": "CAN0075", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"nodes": {"borderWidth": 2, "borderWidthSelected": 4, "margin": 10}, "edges": {"arrows": {"to": {"enabled": true, "scaleFactor": 0.6}}, "color": {"color": "#D1D5DB", "highlight": "#FF6B35", "hover": "#FF6B35"}, "smooth": {"type": "continuous"}}, "physics": {"enabled": true, "barnesHut": {"gravitationalConstant": -2500, "centralGravity": 0.2, "springLength": 180, "springConstant": 0.05, "damping": 0.09, "avoidOverlap": 0.5}, "stabilization": {"enabled": true, "iterations": 200}}, "interaction": {"hover": true, "navigationButtons": true, "zoomView": true, "dragView": true}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

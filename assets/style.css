@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+
+/* ==========================================
+   Ocultar Elementos Nativos do Streamlit
+========================================== */
+header {visibility: hidden !important;}
+.stAppDeployButton {display: none !important;}
+footer {display: none !important;}
+
+/* ==========================================
+   Variáveis do Sistema Visual (Contraste SaaS)
+========================================== */
+:root {
+    --bg-main: #F3F4F6;    /* Fundo principal cinza claro para criar profundidade */
+    --bg-sidebar: #FFFFFF; /* Menu lateral branco puro */
+    --bg-card: #FFFFFF;    /* Cards brancos para saltarem do fundo cinza */
+    --primary: #FF6B35;
+    --primary-hover: #E55A2B;
+    --text-main: #111827;
+    --text-muted: #6B7280;
+    --border-color: #E5E7EB;
+    --radius: 8px;
+}
+
+/* ==========================================
+   Tipografia Global e Fundo
+========================================== */
+html, body, [class*="css"], .stApp {
+    font-family: 'Inter', sans-serif !important;
+    background-color: var(--bg-main) !important;
+    color: var(--text-main) !important;
+}
+
+h2, h3 {
+    font-weight: 700 !important;
+    color: var(--text-main) !important;
+    letter-spacing: -0.02em;
+}
+
+code {
+    font-weight: 600 !important;
+    background-color: #F8FAFC !important;
+    color: var(--primary) !important;
+    padding: 0.2rem 0.5rem !important;
+    border-radius: 4px !important;
+    font-size: 0.9rem !important;
+    border: 1px solid var(--border-color);
+}
+
+/* ==========================================
+   Menu Lateral (Sidebar) com Profundidade
+========================================== */
+[data-testid="stSidebar"] {
+    background-color: var(--bg-sidebar) !important;
+    border-right: 1px solid var(--border-color) !important;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.03) !important; /* Sombra projetando na tela principal */
+}
+
+/* ==========================================
+   Métricas de Topo
+========================================== */
+div[data-testid="metric-container"] {
+    border: 1px solid var(--border-color) !important;
+    background-color: var(--bg-card) !important;
+    border-radius: var(--radius) !important;
+    padding: 1.2rem 1.5rem !important;
+    border-top: 4px solid var(--primary) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+}
+
+div[data-testid="metric-container"] label {
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    font-size: 0.75rem !important;
+    color: var(--text-muted) !important;
+    letter-spacing: 0.05em;
+}
+
+div[data-testid="stMetricValue"] {
+    font-weight: 900 !important;
+    font-size: 2.4rem !important;
+    color: var(--text-main) !important;
+    letter-spacing: -0.02em;
+}
+
+/* ==========================================
+   Cards de Expansão (Matriz Projetada)
+========================================== */
+div[data-testid="stExpander"] {
+    border: 1px solid var(--border-color) !important;
+    background-color: var(--bg-card) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important;
+    margin-bottom: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+div[data-testid="stExpander"]:hover {
+    border-color: #CBD5E1 !important;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.04) !important;
+    transform: translateY(-1px);
+}
+
+div[data-testid="stExpander"] summary p {
+    font-weight: 600 !important;
+}
+
+/* ==========================================
+   Componentes de Controle (Upload e Botões)
+========================================== */
+div[data-testid="stFileUploader"] {
+    border: 2px dashed #CBD5E1 !important;
+    background-color: #F8FAFC !important;
+    border-radius: var(--radius) !important;
+    transition: all 0.3s ease;
+    padding: 0.2rem !important;
+}
+
+div[data-testid="stFileUploader"]:hover {
+    border-color: var(--primary) !important;
+    background-color: rgba(255, 107, 53, 0.02) !important;
+}
+
+div[data-testid="stFileUploader"] small {
+    display: none !important;
+}
+
+.stButton>button[kind="primary"] {
+    background-color: var(--primary) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: var(--radius) !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    padding: 1.5rem !important; /* Botão mais robusto */
+    margin-top: 1rem !important;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px -1px rgba(255, 107, 53, 0.2) !important;
+}
+
+.stButton>button[kind="primary"]:hover {
+    background-color: var(--primary-hover) !important;
+    box-shadow: 0 6px 10px -1px rgba(255, 107, 53, 0.3) !important;
+    transform: translateY(-2px);
+}

@@ -1,0 +1,458 @@
+{
+  "NCC0215": {
+    "nome": "Tecnologia, Ética e Sociedade",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 1,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "NCC0212": {
+    "nome": "Filosofia da Ciência",
+    "ch": 30,
+    "tipo": "obrigatória",
+    "periodo_ideal": 1,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "NCC0213": {
+    "nome": "Física para Computação",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 1,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "NCC0109": {
+    "nome": "Matemática Fundamental",
+    "ch": 90,
+    "tipo": "obrigatória",
+    "periodo_ideal": 1,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "NCC0211": {
+    "nome": "Algoritmos e Programação",
+    "ch": 90,
+    "tipo": "obrigatória",
+    "periodo_ideal": 1,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "NCC0214": {
+    "nome": "Lógica Matemática Aplicada à Computação",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 1,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "NCC0108": {
+    "nome": "Produção Textual",
+    "ch": 30,
+    "tipo": "obrigatória",
+    "periodo_ideal": 1,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "UCE0002": {
+    "nome": "UCE",
+    "ch": 30,
+    "tipo": "obrigatória",
+    "periodo_ideal": 2,
+    "semestre_oferta": 2,
+    "pre_requisitos": []
+  },
+  "NCC0216": {
+    "nome": "Circuitos Digitais",
+    "ch": 90,
+    "tipo": "obrigatória",
+    "periodo_ideal": 2,
+    "semestre_oferta": 2,
+    "pre_requisitos": []
+  },
+  "NCC0217": {
+    "nome": "Geometria Analítica",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 2,
+    "semestre_oferta": 2,
+    "pre_requisitos": []
+  },
+  "NCC0116": {
+    "nome": "Cálculo",
+    "ch": 90,
+    "tipo": "obrigatória",
+    "periodo_ideal": 2,
+    "semestre_oferta": 2,
+    "pre_requisitos": [
+      "NCC0109"
+    ]
+  },
+  "NCC0218": {
+    "nome": "Técnicas de Programação",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 2,
+    "semestre_oferta": 2,
+    "pre_requisitos": [
+      "NCC0211"
+    ]
+  },
+  "NCC0179": {
+    "nome": "Inglês Técnico",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 2,
+    "semestre_oferta": 2,
+    "pre_requisitos": []
+  },
+  "NCC0114": {
+    "nome": "Metodologia para o Trabalho Científico",
+    "ch": 30,
+    "tipo": "obrigatória",
+    "periodo_ideal": 2,
+    "semestre_oferta": 2,
+    "pre_requisitos": []
+  },
+  "UCE0023": {
+    "nome": "UCE",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 3,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "NCC0220": {
+    "nome": "Arquitetura de Computadores",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 3,
+    "semestre_oferta": 1,
+    "pre_requisitos": [
+      "NCC0216"
+    ]
+  },
+  "NCC0219": {
+    "nome": "Álgebra Linear",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 3,
+    "semestre_oferta": 1,
+    "pre_requisitos": [
+      "NCC0217"
+    ]
+  },
+  "NCC0221": {
+    "nome": "Engenharia de Software",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 3,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "NCC0222": {
+    "nome": "Estrutura de Dados",
+    "ch": 90,
+    "tipo": "obrigatória",
+    "periodo_ideal": 3,
+    "semestre_oferta": 1,
+    "pre_requisitos": [
+      "NCC0218"
+    ]
+  },
+  "NCC0223": {
+    "nome": "Paradigmas de Programação",
+    "ch": 30,
+    "tipo": "obrigatória",
+    "periodo_ideal": 3,
+    "semestre_oferta": 1,
+    "pre_requisitos": [
+      "NCC0218"
+    ]
+  },
+  "NCC0224": {
+    "nome": "Probabilidade e Estatística",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 3,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "UCE0024": {
+    "nome": "UCE",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 4,
+    "semestre_oferta": 2,
+    "pre_requisitos": []
+  },
+  "NCC0228": {
+    "nome": "Sistemas Operacionais",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 4,
+    "semestre_oferta": 2,
+    "pre_requisitos": [
+      "NCC0220"
+    ]
+  },
+  "NCC0229": {
+    "nome": "Transmissão de Dados",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 4,
+    "semestre_oferta": 2,
+    "pre_requisitos": [
+      "NCC0213"
+    ]
+  },
+  "NCC0225": {
+    "nome": "Análise de Projeto de Sistemas",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 4,
+    "semestre_oferta": 2,
+    "pre_requisitos": [
+      "NCC0221"
+    ]
+  },
+  "NCC0227": {
+    "nome": "Programação Orientada a Objetos",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 4,
+    "semestre_oferta": 2,
+    "pre_requisitos": []
+  },
+  "NCC0015": {
+    "nome": "Cálculo Numérico Computacional",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 4,
+    "semestre_oferta": 2,
+    "pre_requisitos": []
+  },
+  "NCC0226": {
+    "nome": "Banco de Dados",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 4,
+    "semestre_oferta": 2,
+    "pre_requisitos": []
+  },
+  "UCE0025": {
+    "nome": "UCE",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 5,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "NCC0231": {
+    "nome": "Redes de Computadores",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 5,
+    "semestre_oferta": 1,
+    "pre_requisitos": [
+      "NCC0229"
+    ]
+  },
+  "NCC0230": {
+    "nome": "Inteligência Artificial",
+    "ch": 90,
+    "tipo": "obrigatória",
+    "periodo_ideal": 5,
+    "semestre_oferta": 1,
+    "pre_requisitos": [
+      "NCC0015",
+      "NCC0227"
+    ]
+  },
+  "NCC0233": {
+    "nome": "Teoria dos Grafos",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 5,
+    "semestre_oferta": 1,
+    "pre_requisitos": [
+      "NCC0222"
+    ]
+  },
+  "NCC0232": {
+    "nome": "Teoria da Computação",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 5,
+    "semestre_oferta": 1,
+    "pre_requisitos": [
+      "NCC0222"
+    ]
+  },
+  "UCE0026": {
+    "nome": "UCE",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 6,
+    "semestre_oferta": 2,
+    "pre_requisitos": []
+  },
+  "NCC0237": {
+    "nome": "Sistemas Distribuídos",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 6,
+    "semestre_oferta": 2,
+    "pre_requisitos": [
+      "NCC0231"
+    ]
+  },
+  "NCC0236": {
+    "nome": "Produção Científica",
+    "ch": 30,
+    "tipo": "obrigatória",
+    "periodo_ideal": 6,
+    "semestre_oferta": 2,
+    "pre_requisitos": []
+  },
+  "NCC0235": {
+    "nome": "Computação Gráfica",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 6,
+    "semestre_oferta": 2,
+    "pre_requisitos": [
+      "NCC0222"
+    ]
+  },
+  "NCC0234": {
+    "nome": "Complexidade de Algoritmos",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 6,
+    "semestre_oferta": 2,
+    "pre_requisitos": [
+      "NCC0222"
+    ]
+  },
+  "UCE0027": {
+    "nome": "UCE",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 7,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "NCC0240": {
+    "nome": "Programação Paralela",
+    "ch": 30,
+    "tipo": "obrigatória",
+    "periodo_ideal": 7,
+    "semestre_oferta": 1,
+    "pre_requisitos": [
+      "NCC0228"
+    ]
+  },
+  "NCC0127": {
+    "nome": "Teoria Geral de Adm. e Empreendedorismo",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 7,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "NCC0129": {
+    "nome": "Projeto de TCC",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 7,
+    "semestre_oferta": 1,
+    "pre_requisitos": [
+      "NCC0235",
+      "NCC0225",
+      "NCC0230",
+      "NCC0236",
+      "NCC0237",
+      "NCC0228" 
+    ]
+  },
+  "NCC0239": {
+    "nome": "Processamento de Imagem e Visão Computacional",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 7,
+    "semestre_oferta": 1,
+    "pre_requisitos": [
+      "NCC0222"
+    ]
+  },
+  "NCC0238": {
+    "nome": "Compiladores",
+    "ch": 60,
+    "tipo": "obrigatória",
+    "periodo_ideal": 7,
+    "semestre_oferta": 1,
+    "pre_requisitos": [
+      "NCC0232"
+    ]
+  },
+  "CAN0075": {
+    "nome": "Trabalho de Conclusão de Curso",
+    "ch": 120,
+    "tipo": "obrigatória",
+    "periodo_ideal": 8,
+    "semestre_oferta": 2,
+    "pre_requisitos": [
+      "NCC0129"
+    ]
+  },
+  "SLOT_OPT_1": {
+    "nome": "Optativa I",
+    "ch": 60,
+    "tipo": "optativa",
+    "periodo_ideal": 5,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "SLOT_OPT_2": {
+    "nome": "Optativa II",
+    "ch": 60,
+    "tipo": "optativa",
+    "periodo_ideal": 5,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "SLOT_OPT_3": {
+    "nome": "Optativa III",
+    "ch": 60,
+    "tipo": "optativa",
+    "periodo_ideal": 6,
+    "semestre_oferta": 2,
+    "pre_requisitos": []
+  },
+  "SLOT_OPT_4": {
+    "nome": "Optativa IV",
+    "ch": 60,
+    "tipo": "optativa",
+    "periodo_ideal": 6,
+    "semestre_oferta": 2,
+    "pre_requisitos": []
+  },
+  "SLOT_OPT_5": {
+    "nome": "Optativa V",
+    "ch": 60,
+    "tipo": "optativa",
+    "periodo_ideal": 7,
+    "semestre_oferta": 1,
+    "pre_requisitos": []
+  },
+  "SLOT_OPT_6": {
+    "nome": "Optativa VI",
+    "ch": 60,
+    "tipo": "optativa",
+    "periodo_ideal": 8,
+    "semestre_oferta": 2,
+    "pre_requisitos": []
+  }
+}
