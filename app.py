@@ -57,7 +57,7 @@ with st.sidebar:
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("<p style='font-weight: 700; font-size: 0.8rem; color: #374151; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 0.5px;'>Parâmetros de Otimização</p>", unsafe_allow_html=True)
     
-    max_disciplinas = st.slider("Cadeiras por período letivo", min_value=4, max_value=8, value=6)
+    max_disciplinas = st.slider("Cadeiras por período letivo", min_value=5, max_value=7, value=6)
     semestre_atual = st.number_input("Início da projeção (Oferta 1 = Ímpar, 2 = Par)", min_value=1, max_value=2, value=1, format="%d")
     
     caso_selecionado = st.selectbox(

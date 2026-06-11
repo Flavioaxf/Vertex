@@ -4,21 +4,54 @@ import networkx as nx
 def gerar_visualizacao_grafo(grafo_completo_json, aprovadas, cursando):
     G = nx.DiGraph()
     
+    # Identificar optativas reais que foram aprovadas ou estão sendo cursadas
+    # (Códigos que não estão no JSON original ou estão mas são do tipo 'optativa')
+    obrigatorias = {cod for cod, info in grafo_completo_json.items() if info.get("tipo") == "obrigatória"}
+    
+    optativas_reais_aprovadas = [cod for cod in aprovadas if cod not in obrigatorias]
+    optativas_reais_cursando = [cod for cod in cursando if cod not in obrigatorias]
+    
+    # Mapeamento de slots de optativas
+    slots_optativos = sorted([cod for cod in grafo_completo_json.keys() if cod.startswith("SLOT_OPT")])
+    mapeamento_slots = {}
+    
+    # Preencher slots com optativas aprovadas primeiro, depois cursando
+    idx_slot = 0
+    for cod_real in optativas_reais_aprovadas:
+        if idx_slot < len(slots_optativos):
+            mapeamento_slots[slots_optativos[idx_slot]] = {"codigo": cod_real, "status": "aprovada"}
+            idx_slot += 1
+            
+    for cod_real in optativas_reais_cursando:
+        if idx_slot < len(slots_optativos):
+            # Evitar duplicata se por algum motivo o mesmo código estiver em ambas as listas
+            if not any(m["codigo"] == cod_real for m in mapeamento_slots.values()):
+                mapeamento_slots[slots_optativos[idx_slot]] = {"codigo": cod_real, "status": "cursando"}
+                idx_slot += 1
+
     # Adicionando os nós e definindo as cores de status
     for codigo, info in grafo_completo_json.items():
-        # Ocultamos os slots genéricos para limpar o mapa
-        if codigo.startswith("SLOT_OPT"):
-            continue
+        # Lógica especial para slots de optativas
+        label_exibicao = codigo
+        status_final = "pendente"
+        
+        if codigo in mapeamento_slots:
+            label_exibicao = mapeamento_slots[codigo]["codigo"]
+            status_final = mapeamento_slots[codigo]["status"]
+        elif codigo in aprovadas:
+            status_final = "aprovada"
+        elif codigo in cursando:
+            status_final = "cursando"
             
-        titulo_hover = f"{codigo}\n{info['nome']}\nCH: {info['ch']}h"
+        titulo_hover = f"{label_exibicao}\n{info['nome']}\nCH: {info['ch']}h"
         
         # Definição de cores com contraste de borda
-        if codigo in aprovadas:
-            cor_fundo = "#10B981"
+        if status_final == "aprovada":
+            cor_fundo = "#10B981" # Verde (Integralizado)
             cor_borda = "#059669"
             cor_fonte = "#FFFFFF"
-        elif codigo in cursando:
-            cor_fundo = "#F59E0B"
+        elif status_final == "cursando":
+            cor_fundo = "#F59E0B" # Amarelo/Âmbar (Em Andamento)
             cor_borda = "#D97706"
             cor_fonte = "#FFFFFF"
         else:
@@ -28,7 +61,7 @@ def gerar_visualizacao_grafo(grafo_completo_json, aprovadas, cursando):
             
         G.add_node(
             codigo, 
-            label=codigo, 
+            label=label_exibicao, 
             title=titulo_hover, 
             color={"background": cor_fundo, "border": cor_borda, "highlight": {"background": cor_fundo, "border": "#FF6B35"}}, 
             shape="box", 
@@ -37,10 +70,8 @@ def gerar_visualizacao_grafo(grafo_completo_json, aprovadas, cursando):
         
     # Adicionando as arestas (setas de pré-requisitos)
     for codigo, info in grafo_completo_json.items():
-        if codigo.startswith("SLOT_OPT"):
-            continue
         for pre_req in info["pre_requisitos"]:
-            if pre_req in grafo_completo_json and not pre_req.startswith("SLOT_OPT"):
+            if pre_req in grafo_completo_json:
                 G.add_edge(pre_req, codigo)
                 
     # Configuração do renderizador de rede
