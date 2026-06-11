@@ -1,6 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import os
+import graphviz
 
 from modulos.extrator_pdf import extrair_dados_historico
 from grafos.construtor import construir_grafo_aluno
@@ -202,6 +203,63 @@ else:
             
         # Injeta a visualização na tela do Streamlit
         components.html(codigo_html, height=620, scrolling=False)
+
+        # === SEÇÃO DE EXPORTAÇÃO (Graphviz) ===
+        st.markdown("<br>", unsafe_allow_html=True)
+        col_exp1, col_exp2 = st.columns(2)
+
+        def gerar_svg_pdf(formato):
+            # Recria o grafo completo para exportação
+            dot = graphviz.Digraph(comment='Mapa de Dependências Vertex', format=formato)
+            dot.attr(rankdir='TB', size='12,12')
+            dot.attr('node', shape='box', style='filled', fontname='Arial', fontsize='10')
+
+            # Cores solicitadas
+            COR_APROVADA = "#4CAF50"
+            COR_CURSANDO = "#FFC107"
+            COR_PENDENTE = "#9E9E9E"
+
+            # Adicionar nós (Aprovadas, Cursando e Pendentes)
+            for codigo, info in dados_grade.items():
+                cor = COR_PENDENTE
+                if codigo in aprovadas:
+                    cor = COR_APROVADA
+                elif codigo in cursando:
+                    cor = COR_CURSANDO
+                
+                label = f"{codigo}\n{info['nome']}"
+                dot.node(codigo, label=label, fillcolor=cor, fontcolor='white', color=cor)
+
+            # Adicionar arestas (Dependências)
+            for codigo, info in dados_grade.items():
+                for pre_req in info.get("pre_requisitos", []):
+                    if pre_req in dados_grade:
+                        dot.edge(pre_req, codigo)
+            
+            return dot.pipe()
+
+        try:
+            with col_exp1:
+                st.download_button(
+                    label="⬇ Exportar SVG",
+                    data=gerar_svg_pdf('svg'),
+                    file_name="mapa_dependencias_vertex.svg",
+                    mime="image/svg+xml",
+                    use_container_width=True
+                )
+            
+            with col_exp2:
+                st.download_button(
+                    label="⬇ Exportar PDF",
+                    data=gerar_svg_pdf('pdf'),
+                    file_name="mapa_dependencias_vertex.pdf",
+                    mime="application/pdf",
+                    use_container_width=True
+                )
+        except Exception as e:
+            st.error(f"Erro ao gerar exportação: Verifique se o Graphviz está instalado no sistema. {e}")
+
+        st.info("Para exportação funcionar, instale o Graphviz em: https://graphviz.org/download/")
 
     with aba_simulacao:
         st.markdown("<br>", unsafe_allow_html=True)
