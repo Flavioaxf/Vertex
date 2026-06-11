@@ -81,7 +81,12 @@ if gerar:
         st.warning("Nenhum documento detectado. Anexe o histórico para continuar.", icon=":material/warning:")
     else:
         with st.spinner('Construindo malha de grafos e resolvendo dependências matemáticas...'):
-            perfil, aprovadas, cursando = extrair_dados_historico(arquivo_historico)
+            try:
+                perfil, aprovadas, cursando = extrair_dados_historico(arquivo_historico)
+            except ValueError as e:
+                st.error(str(e))
+                st.stop()
+                
             caminho_grade = "data/grade_cc.json"
             grafo_aluno, dados_grade = construir_grafo_aluno(caminho_grade, aprovadas, cursando)
             

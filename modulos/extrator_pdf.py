@@ -17,6 +17,12 @@ def extrair_dados_historico(caminho_ou_arquivo_pdf):
 
     texto_completo = ""
     with pdfplumber.open(caminho_ou_arquivo_pdf) as pdf:
+        # Validação de Documento Oficial da UERN
+        if len(pdf.pages) > 0:
+            primeira_pagina = pdf.pages[0].extract_text()
+            if not primeira_pagina or "UERN" not in primeira_pagina or "Histórico Escolar" not in primeira_pagina:
+                raise ValueError("Documento inválido. Por favor, anexe um Histórico Escolar válido da UERN emitido pelo SIGAA.")
+
         for page in pdf.pages:
             texto = page.extract_text()
             if texto:
