@@ -14,8 +14,8 @@ footer {display: none !important;}
     --bg-main: #F3F4F6;    /* Fundo principal cinza claro para criar profundidade */
     --bg-sidebar: #FFFFFF; /* Menu lateral branco puro */
     --bg-card: #FFFFFF;    /* Cards brancos para saltarem do fundo cinza */
-    --primary: #FF6B35;
-    --primary-hover: #E55A2B;
+    --primary: #7C3AED;    /* Roxo Violeta Principal (Removido o Laranja) */
+    --primary-hover: #6D28D9; /* Roxo Escuro para Hover */
     --text-main: #111827;
     --text-muted: #6B7280;
     --border-color: #E5E7EB;
@@ -53,7 +53,7 @@ code {
 [data-testid="stSidebar"] {
     background-color: var(--bg-sidebar) !important;
     border-right: 1px solid var(--border-color) !important;
-    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.03) !important; /* Sombra projetando na tela principal */
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.03) !important; 
 }
 
 /* ==========================================
@@ -118,7 +118,7 @@ div[data-testid="stFileUploader"] {
 
 div[data-testid="stFileUploader"]:hover {
     border-color: var(--primary) !important;
-    background-color: rgba(255, 107, 53, 0.02) !important;
+    background-color: rgba(124, 58, 237, 0.03) !important; /* Roxo transparente */
 }
 
 div[data-testid="stFileUploader"] small {
@@ -132,14 +132,39 @@ div[data-testid="stFileUploader"] small {
     border-radius: var(--radius) !important;
     font-weight: 700 !important;
     font-size: 1rem !important;
-    padding: 1.5rem !important; /* Botão mais robusto */
+    padding: 1.5rem !important; 
     margin-top: 1rem !important;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 6px -1px rgba(255, 107, 53, 0.2) !important;
+    box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.2) !important;
 }
 
 .stButton>button[kind="primary"]:hover {
     background-color: var(--primary-hover) !important;
-    box-shadow: 0 6px 10px -1px rgba(255, 107, 53, 0.3) !important;
+    box-shadow: 0 6px 10px -1px rgba(124, 58, 237, 0.3) !important;
     transform: translateY(-2px);
+}
+
+/* ==========================================
+   Animação Fluida do Logo (GradPath) - Cores da Imagem
+========================================== */
+@keyframes gradientFlux {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.logo-gradpath {
+    /* Gradiente exato: Rosa (Fuchsia), Roxo e Índigo */
+    background: linear-gradient(-45deg, #DB2777, #9333EA, #4F46E5, #9333EA, #DB2777);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlux 6s ease infinite;
+    font-size: 2.6rem !important;
+    font-weight: 900 !important;
+    letter-spacing: -1.5px;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    display: inline-block;
 }
